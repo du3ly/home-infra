@@ -1,0 +1,24 @@
+---
+- name: add unix accounts
+  user:
+    name: "{{ item.name }}"
+    comment: "{{ item.comment }}"
+    groups: sudo
+    state: present
+    shell: /bin/bash
+  loop: "{{ operators }}"
+
+- name: create operators ssh key
+  authorized_key:
+    key: "{{ item.ssh_keys | join(\"\n\") }}"
+    path: "/home/{{ item.name }}/.ssh/authorized_keys"
+    state: present
+    user: "{{ item.name }}" 
+  loop: "{{ operators }}"
+
+- name: add sudoers
+  user:
+    name: "{{ item.name }}"
+    groups: sudo
+    append: yes
+  loop: "{{ operators }}"
