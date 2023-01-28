@@ -1,8 +1,5 @@
 ---
-# Copy pub key to the Debian host
-# Run 'su -' to access the root
-# As the root user, run visudo and add duely ALL=(ALL) NOPASSWD:ALL to /etc/sudoers
 - hosts: all
   become: yes
   roles:
-    - { role: operators }
+    - operators
