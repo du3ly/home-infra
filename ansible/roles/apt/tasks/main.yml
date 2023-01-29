@@ -8,3 +8,4 @@
     pkg:
       - net-tools
       - sudo
+      - curl

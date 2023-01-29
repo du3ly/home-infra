@@ -1,0 +1,39 @@
+****************************************************
+
+System Information For Hostname: {{ inventory_hostname }}
+
+Distribution: {{ ansible_distribution }}
+Distribution Release: {{ ansible_distribution_release }}
+Distribution Version: {{ ansible_distribution_version }}
+{% if ansible_dns.search is defined %}
+DNS Search: {{ ansible_dns.search|join (" ") }}
+{% endif %}
+{% if ansible_dns.nameservers is defined %}
+DNS Server(s): {{ ansible_dns.nameservers|join (" ") }}
+{% endif %}
+{% if ansible_interfaces is defined %}
+Interfaces:
+{%   for int in ansible_interfaces %}
+    Interface: {{ int }}
+{%     if hostvars[inventory_hostname]['ansible_'+int] is defined %}
+{%       if hostvars[inventory_hostname]['ansible_'+int]['ipv4'] is defined %}
+{%         if hostvars[inventory_hostname]['ansible_'+int]['ipv4']['address'] is defined %}
+      ip: {{ hostvars[inventory_hostname]['ansible_'+int]['ipv4']['address'] }}
+{%         endif %}
+{%       endif %}
+{%       if hostvars[inventory_hostname]['ansible_'+int]['macaddress'] is defined %}
+      mac: {{ hostvars[inventory_hostname]['ansible_'+int]['macaddress'] }}
+{%       endif %}
+{%     endif %}
+{%   endfor %}
+{% endif %}
+Kernel: {{ ansible_kernel }}
+Timezone: {{ ansible_date_time.tz }}({{ ansible_date_time.tz_offset }})
+{% if ansible_virtualization_role is defined %}
+Virtualization Role: {{ ansible_virtualization_role }}
+{% endif %}
+{% if ansible_virtualization_type is defined %}
+Virtualization Type: {{ ansible_virtualization_type }}
+{% endif %}
+
+****************************************************

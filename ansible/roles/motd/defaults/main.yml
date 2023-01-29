@@ -1,0 +1,4 @@
+---
+motd_debian_defaults:
+  - 10-uname
+  - 92-unattended-upgrades
