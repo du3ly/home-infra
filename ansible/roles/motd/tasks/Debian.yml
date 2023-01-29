@@ -1,0 +1,15 @@
+---
+# https://github.com/mrlesmithjr/ansible-motd
+- name: disable motd.dynamic
+  file:
+    path: '/etc/update-motd.d/{{ item }}'
+    owner: root
+    group: root
+    mode: '0664'
+  with_items: '{{ motd_debian_defaults }}'
+
+- name: configure motd
+  template:
+    src: motd.j2
+    dest: /etc/motd
+  become: true
