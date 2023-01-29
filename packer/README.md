@@ -14,8 +14,8 @@ pveum user add packer@pve -comment "Packer API user"
 pveum acl modify / -user packer@pve -role Packer
 pveum user token add packer@pve packer1
 
-pveum acl modify / --users packer@pve
-pveum acl modify / --tokens packer@pve!packer1
+pveum acl modify / --role Packer --users packer@pve
+pveum acl modify / --role Packer --tokens 'packer@pve!packer1'
 ```
 
 ## How to use Packer
