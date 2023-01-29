@@ -1,0 +1,9 @@
+---
+- name: update hostname
+  command: hostnamectl set-hostname {{ inventory_hostname }}
+
+- name: configure /etc/hosts
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+  become: true
