@@ -11,6 +11,8 @@ source "proxmox" "debian_bullseye" {
     "vga=788 noprompt quiet --<enter>"
   ]
   boot_wait    = "10s"
+  cloud_init   = true
+  cloud_init_storage_pool = "vmstore"
   disks {
     disk_size         = "32G"
     storage_pool      = "vmstore"
@@ -35,16 +37,39 @@ source "proxmox" "debian_bullseye" {
   token                = "${var.proxmox_token}"
   unmount_iso          = true
   username             = "${var.proxmox_user}"
-  vm_id                = 200
+  vm_id                = 201
 }
 
 build {
   sources = ["source.proxmox.debian_bullseye"]
 
+  provisioner "file" {
+      destination = "/tmp/requirements.txt"
+      source = "../requirements.txt"
+  }
+
   provisioner "shell" {
-    inline = [
-      "mkdir -p /home/ansible/.ssh",
-      "echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHBFGXcVb+nOAYTOtUT2rcSinKXIirlj/1IMmxxCOtdf ansible >> /home/ansible/.ssh/authorized_keys",
+    execute_command = "{{.Vars}} sudo -S -E bash '{{.Path}}'"
+    scripts = [
+      "scripts/ansible.sh"
+    ]
+  }
+
+  provisioner "ansible-local" {
+    command = "ANSIBLE_FORCE_COLOR=1 PYTHONUNBUFFERED=1 ansible-playbook"
+    extra_arguments= [
+      "-e 'ansible_python_interpreter=/usr/bin/python3'"
+    ]
+    inventory_groups = ["all"]
+    playbook_dir = "../ansible"
+    playbook_file = "../ansible/playbooks/operators.yml"
+  }
+
+  provisioner "shell" {
+    execute_command = "{{.Vars}} sudo -S -E bash '{{.Path}}'"
+    expect_disconnect = "true"
+    scripts = [
+      "scripts/cleanup.sh"
     ]
   }
 }
