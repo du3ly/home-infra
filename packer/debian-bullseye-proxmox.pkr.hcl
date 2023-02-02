@@ -37,7 +37,7 @@ source "proxmox" "debian_bullseye" {
   token                = "${var.proxmox_token}"
   unmount_iso          = true
   username             = "${var.proxmox_user}"
-  vm_id                = 201
+  vm_id                = 200
 }
 
 build {
