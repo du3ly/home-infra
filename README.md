@@ -1,11 +1,16 @@
 # Home Infrastructure
 
-## Hardware
+## Ansible
 
-Intel Atom N2800 @ 1.86GHz  
-4GB RAM  
-64GB SSD  
+### Running Ansible
 
-## OS
+Run the install.sh script to setup the virtual environment
+```
+./install.sh
+```
 
-Debian 11 (bullseye)
+### Ansible Galaxy
+```
+cd ansible
+ansible-galaxy install -r requirements.yaml
+```
