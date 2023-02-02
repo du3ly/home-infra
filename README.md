@@ -12,5 +12,5 @@ Run the install.sh script to setup the virtual environment
 ### Ansible Galaxy
 ```
 cd ansible
-ansible-galaxy install -r requirements.yaml
+ansible-galaxy install -r collections/requirements.yaml
 ```
