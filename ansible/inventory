@@ -3,4 +3,6 @@ proxmox-001 ansible_host=192.168.0.20
 
 [proxmox_vm]
 cron ansible_host=192.168.0.25
-test-server ansible_host=192.168.0.65
+
+[database]
+db-001 ansible_host=192.168.0.82
