@@ -1,0 +1,11 @@
+---
+postgresql_databases:
+  - name: terraform
+postgresql_locales:
+  - 'en_US.UTF-8'
+postgresql_users:
+  - name: postgres
+    password: postgres
+  - name: terraform
+    password: terraform
+    db: terraform
