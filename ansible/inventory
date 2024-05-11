@@ -6,3 +6,6 @@ cron ansible_host=192.168.0.25
 
 [database]
 db-001 ansible_host=192.168.0.82
+
+[nomad]
+nomad-001 ansible_host=192.168.0.163
