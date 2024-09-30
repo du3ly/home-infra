@@ -12,7 +12,7 @@ postgresql_users:
 postgresql_hba_entries:
   - { type: local, database: all, user: postgres, auth_method: peer }
   - { type: local, database: all, user: all, auth_method: peer }
-  - { type: host, database: all, user: all, address: '192.168.0.1/24', auth_method: md5 }
+  - { type: host, database: all, user: all, address: '192.168.1.1/24', auth_method: md5 }
   - { type: host, database: all, user: all, address: '::1/128', auth_method: md5 }
 postgresql_global_config_options:
   - option: unix_socket_directories
