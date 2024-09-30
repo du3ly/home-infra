@@ -21,7 +21,7 @@ variable "memory" {
 
 variable "pm_api_url" {
   type    = string
-  default = "192.168.0.20"
+  default = "192.168.1.20"
 }
 
 variable "target_node" {

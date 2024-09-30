@@ -28,7 +28,7 @@ source "proxmox" "debian_bullseye" {
   }
   memory               = "1024"
   node                 = "proxmox-001"
-  proxmox_url          = "https://192.168.0.20:8006/api2/json"
+  proxmox_url          = "https://192.168.1.20:8006/api2/json"
   ssh_password         = "${var.ssh_password}"
   ssh_timeout          = "15m"
   ssh_username         = "${var.ssh_username}"

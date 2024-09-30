@@ -1,11 +1,8 @@
 [proxmox]
-proxmox-001 ansible_host=192.168.0.20
-
-[proxmox_vm]
-cron ansible_host=192.168.0.25
+proxmox-001 ansible_host=192.168.1.20
 
 [database]
-db-001 ansible_host=192.168.0.82
+db-001 ansible_host=192.168.1.29
 
 [k3s]
-k3s-001 ansible_host=192.168.0.120
+k3s-001 ansible_host=192.168.1.120
