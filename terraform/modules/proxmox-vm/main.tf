@@ -18,4 +18,7 @@ resource "proxmox_vm_qemu" "this" {
     storage = var.disk_storage
     size    = var.disk_size
   }
+
+  # Enable QEMU Guest Agent
+  agent = 1
 }
