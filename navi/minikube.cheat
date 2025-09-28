@@ -1,0 +1,14 @@
+% minikube
+
+; https://minikube.sigs.k8s.io/docs/start/?arch=%2Fmacos%2Farm64%2Fstable%2Fhomebrew
+
+# Start minikube
+podman machine start && \
+minikube start --driver=podman
+
+# Stop minikube
+minikube stop && \
+podman machine stop
+
+# Dashboard
+minikube dashboard
