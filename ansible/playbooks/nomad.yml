@@ -1,5 +1,0 @@
-- hosts: nomad
-  become: yes
-  roles:
-    - nomad
-
